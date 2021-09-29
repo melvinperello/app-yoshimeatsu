@@ -7,27 +7,27 @@ import { Button } from "react-native-elements";
 import { ThemeProvider } from "react-native-elements";
 import { Image } from "react-native-elements";
 import { Text } from "react-native-elements";
-
-export default class MenuHome extends React.Component {
+import { SafeAreaView } from "react-native-safe-area-context";
+class MenuHome extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
-  constructor(props){
-    super(props)
-    this.navMenuSelection = this.navMenuSelection.bind(this)
+  constructor(props) {
+    super(props);
+    this.navMenuSelection = this.navMenuSelection.bind(this);
   }
 
-  navMenuSelection(){
+  navMenuSelection() {
     const { navigate } = this.props.navigation;
-    navigate('MenuSelection',{name: 'MenuSelection'});
+    navigate("MenuSelection", { name: "MenuSelection" });
   }
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <ThemeProvider theme={theme}>
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           {/* Icon and Name */}
           <View style={styles.viewFavIco}>
             <Text h1>Yoshimeatsu</Text>
@@ -46,9 +46,13 @@ export default class MenuHome extends React.Component {
           </View>
           {/* Buttons */}
           <View style={styles.viewButton}>
-            <Button onPress={this.navMenuSelection} style={{ backgroundColor: "#B32C29" }} title="Open Menu" />
+            <Button
+              onPress={this.navMenuSelection}
+              style={{ backgroundColor: "#B32C29" }}
+              title="Open Menu"
+            />
           </View>
-        </View>
+        </SafeAreaView>
       </ThemeProvider>
     );
   }
@@ -58,34 +62,36 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "stretch"
+    alignItems: "stretch",
   },
   viewFavIco: {
-    alignItems: "center"
+    alignItems: "center",
   },
   viewTableNo: {
     paddingTop: 50,
     paddingBottom: 50,
-    alignItems: "center"
+    alignItems: "center",
   },
   viewButton: {
-    alignItems: "stretch"
-  }
+    alignItems: "stretch",
+  },
 });
 
 const theme = {
   Button: {
     raised: true,
     titleStyle: {
-      color: "white"
+      color: "white",
     },
     buttonStyle: {
       backgroundColor: "#B32C29",
-      height: 50
+      height: 50,
     },
     containerStyle: {
       marginLeft: 20,
-      marginRight: 20
-    }
-  }
+      marginRight: 20,
+    },
+  },
 };
+
+export default MenuHome;
